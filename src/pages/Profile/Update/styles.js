@@ -73,12 +73,12 @@ export const Horizontal = styled.View`
   margin: 0px -5px 10px;
 `;
 
-export const TextInput = ({ leftIcon, placeholder, vertical = false, filled = false }) => (
+export const TextInput = ({ leftIcon, placeholder, vertical = false, filled = false, value, onChangeText }) => (
   <TextInputContainer vertical={vertical} filled={filled}>
     <LeftContainer>
       <Icon name={ leftIcon ? leftIcon : 'home' } type="material-community" color="#bbb" />
     </LeftContainer>
-    <SimpleTextInput placeholder={ placeholder || 'Digite aqui' }/>
+    <SimpleTextInput value={value} onChangeText={onChangeText} placeholder={ placeholder || 'Digite aqui' }/>
   </TextInputContainer>
 );
 
