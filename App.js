@@ -7,17 +7,9 @@ import { useFonts } from '@use-expo/font';
 import Routes from './src/routes';
 import BottomSheet from './src/components/BottomSheet'
 
-
-export const MainContext = React.createContext({
-  bsRef: () => {},    // Referência ao BottomSheet Component
-  setNav: () => {},   // Função useState para uso do objeto navigation
-  nav: {},            // Objeto navigation
-});
+import { GeneralContextProvider } from './src/context';
 
 export default function App() {
-  const bottomSheetRef = React.useRef(null);
-  const [nav, setNav] = React.useState({});
-
   // Custom fonts
   let [fontsLoaded] = useFonts({
     'Poppins Light': require('./assets/fonts/Poppins-Light.otf'),
@@ -33,13 +25,13 @@ export default function App() {
         !fontsLoaded ? (
           <AppLoading />
         ) : (
-          <MainContext.Provider value={{ bsRef: () => bottomSheetRef.current.toggle(), setNav, nav }}>
+          <GeneralContextProvider>
             <StatusBar barStyle="dark-content" backgroundColor="#fff" />
             <MenuProvider>
-              <BottomSheet ref={bottomSheetRef} />
+              <BottomSheet />
               <Routes />
             </MenuProvider>
-          </MainContext.Provider>
+          </GeneralContextProvider>
         )
       }
     </>

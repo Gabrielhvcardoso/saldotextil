@@ -1,35 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useNavigation } from '@react-navigation/native';
+
 // Configurations
 const title = 'Camisas Femininas de Manga Curta';
 const subtitle = 'Gabriel Henrique Veiga Cardoso';
 
-export const Item = ({ navigation }) => (
-  <Container>
-    <Touchable>
-      <Image />
-    </Touchable>
-    <Details>
-      <Top>
-        <Title>{ title }</Title>
-        <Subtitle>{ subtitle }</Subtitle>
+export const Item = () => {
+  const navigation = useNavigation();
 
-        <Price>
-          R$ 13,60 <Measure>/ unidade</Measure>
-        </Price>
-      </Top>
-      <Bottom>
-        <ProfileImage />
-        <Button>
-          <ButtonText onPress={() => navigation.navigate('FeedInspect', { name: 'Camisas Femininas' })}>
-            Ver detalhes
-          </ButtonText>
-        </Button>
-      </Bottom>
-    </Details>
-  </Container>
-);
+  return (
+    <Container>
+      <Touchable>
+        <Image />
+      </Touchable>
+      <Details>
+        <Top>
+          <Title>{ title }</Title>
+          <Subtitle>{ subtitle }</Subtitle>
+
+          <Price>
+            R$ 13,60 <Measure>/ unidade</Measure>
+          </Price>
+        </Top>
+        <Bottom>
+          <ProfileImage />
+          <Button>
+            <ButtonText onPress={() => navigation.navigate('FeedInspect', { name: 'Camisas Femininas' })}>
+              Ver detalhes
+            </ButtonText>
+          </Button>
+        </Bottom>
+      </Details>
+    </Container>
+  );
+}
 
 // Components
 export const Container = styled.View`

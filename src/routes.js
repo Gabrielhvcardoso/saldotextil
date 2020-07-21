@@ -6,7 +6,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { MainContext } from '../App';
+import GeneralContext from './context';
 
 // Useless center component
 import Others from './pages/Others';
@@ -181,7 +181,7 @@ function ProfileStack () {
 }
 
 function BottomTabs () {
-  const { bsRef } = React.useContext(MainContext);
+  const { tools } = React.useContext(GeneralContext);
 
   return (
     <Tabs.Navigator
@@ -222,7 +222,7 @@ function BottomTabs () {
         options={{
           tabBarButton: () => (
             <TouchableOpacity
-              onPress={bsRef}
+              onPress={() => tools.bsRef.current.open()}
               style={{ flex: 1, justifyContent: 'center' }}
             >
               <Icon name="plus" type="material-community" size={40} color="#666" />

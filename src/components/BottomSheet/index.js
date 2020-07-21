@@ -2,12 +2,12 @@ import React from 'react';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import { Icon } from 'react-native-elements';
 
-import { MainContext } from '../../../App';
+import GeneralContext from '../../context';
 import { Container, ListContainer, ListItem, ListLabel } from './styles';
 
-function BottomSheet(props, ref) {
-  const { nav } = React.useContext(MainContext);
-  const rbref = React.useRef(null);
+function BottomSheet() {
+  const { tools } = React.useContext(GeneralContext);
+  const { bsRef } = tools;
 
   const items = [
     {
@@ -15,40 +15,34 @@ function BottomSheet(props, ref) {
       name: 'Criar anúncio',
       action: () => {
         // missing function
-        rbref.current.close();
+        bsRef.current.close();
       },
     },
     {
       icon: 'briefcase-outline',
       name: 'Empregos',
       action: () => {
-        nav.navigate('Jobs');
-        rbref.current.close();
+        tools.navigation.navigate('Jobs');
+        bsRef.current.close();
       },
     },
     {
       icon: 'flag-outline',
       name: 'Representantes',
       action: () => {
-        nav.navigate('Agents');
-        rbref.current.close();
+        tools.navigation.navigate('Agents');
+        bsRef.current.close();
       },
     },
     {
       icon: 'gift-outline',
       name: 'Doações',
       action: () => {
-        nav.navigate('Donations');
-        rbref.current.close();
+        tools.navigation.navigate('Donations');
+        bsRef.current.close();
       },
     },
   ]
-
-  // Send to Foward (App.js)
-  React.useImperativeHandle(ref, () => ({
-    toggle: () => rbref.current.open(),
-  }));
-
 
   return (
     <RBSheet
@@ -66,7 +60,7 @@ function BottomSheet(props, ref) {
         }
       }}
 
-      ref={rbref}
+      ref={bsRef}
     >
       <Container>
         <ListContainer>
@@ -86,4 +80,4 @@ function BottomSheet(props, ref) {
   );
 }
 
-export default React.forwardRef(BottomSheet);
+export default BottomSheet;

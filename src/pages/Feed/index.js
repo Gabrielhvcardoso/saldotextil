@@ -5,15 +5,14 @@ import Product from '../../components/Product';
 import Filters from '../../components/Filters';
 import FiltersModal from '../../components/Modal';
 
-import { MainContext } from '../../../App';
+import GeneralContext from '../../context';
 import { Container, Footer, Search, Bar, FlatListHeader } from './styles';
-import { Icon } from 'react-native-elements';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 export default function Feed({ navigation }) {
-  const { setNav } = React.useContext(MainContext);
-  React.useEffect(() => setNav(navigation), []);
+  const { tools, setTools } = React.useContext(GeneralContext);
+  React.useEffect(() => setTools({ ...tools, navigation }), []);
 
   // Função que carrega os primeiros anúncios
   const [results, setResults] = React.useState({
