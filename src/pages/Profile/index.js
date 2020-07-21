@@ -2,9 +2,13 @@ import React from 'react';
 import { Andress, Avatar, Bio, BioDetails, Container, EditButton, Name, MyAnnouncement, MyAds, SpacedView } from './styles';
 
 import Update from './Update';
+import GeneralContext from '../../context';
 
 export default function Profile({ route }) {
+  const { localUser } = React.useContext(GeneralContext);
   const [isUpdatePerfilActive, setIsUpdatePerfilActive] = React.useState(false);
+  
+  const { currentUser } = localUser;
 
   return (
     <Container>
@@ -15,12 +19,11 @@ export default function Profile({ route }) {
         }}
       />
 
-
       <Bio>
-        <Avatar source={{ uri: 'http://html-color.org/pt/EDE9EA.jpg' }} />
+        <Avatar source={{ uri: currentUser.image || 'http://html-color.org/pt/EDE9EA.jpg' }} />
         <BioDetails>
-          <Name>Gabriel Henrique Cardoso</Name>
-          <Andress>Jaraguá do Sul - SC</Andress>
+          <Name>{ currentUser.name }</Name>
+          <Andress>{ `${currentUser.andress.city} - ${currentUser.andress.state}` }</Andress>
           {
             route.params.owner ? (
               <EditButton onPress={() => setIsUpdatePerfilActive(true)} >

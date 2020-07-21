@@ -30,7 +30,7 @@ export const GeneralContextProvider = ({ children }) => {
 
     setLocalUser({
       isLogged: true,
-      currentUser: isJson(user) ? user : JSON.stringify(user),
+      currentUser: isJson(user) ? JSON.parse(user) : user,
       currentEmail: email,
     });
   }
@@ -39,7 +39,7 @@ export const GeneralContextProvider = ({ children }) => {
     await AsyncStorage.setItem('@USER', isJson(user) ? user : JSON.stringify(user));
     setLocalUser({
       ...localUser,
-      currentUser: isJson(user) ? user : JSON.stringify(user),
+      currentUser: isJson(user) ? JSON.parse(user) : user,
     });
   }
 
