@@ -2,7 +2,10 @@ import React from 'react';
 import { ToastAndroid } from 'react-native';
 import { Container, ListItem } from './styles';
 
+import GeneralContext from '../../context';
+
 export default function Settings({ navigation }) {
+  const { destroyAuthUser } = React.useContext(GeneralContext);
   return (
     <Container>
       <ListItem
@@ -32,7 +35,7 @@ export default function Settings({ navigation }) {
       <ListItem
         leftIcon="exit-to-app"
         title="Sair da conta"
-        action={() => {}}
+        action={() => destroyAuthUser()}
       />
 
       <ListItem
