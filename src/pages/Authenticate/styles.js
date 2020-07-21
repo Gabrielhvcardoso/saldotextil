@@ -1,6 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export const LoadingContainer = () => (
+  <CenteredContainer>
+    <Spinner />
+  </CenteredContainer>
+);
+
+const CenteredContainer = styled.View`
+  align-items: center;
+  background-color: #2B7ED7;
+  flex: 1;
+  justify-content: center;
+`;
+
+const Spinner = styled.ActivityIndicator.attrs({
+  color: '#fff',
+  size: 'large'
+})``;
+
 export const TopContainer = styled.View`
   align-items: center;
   background-color: #2B7ED7;

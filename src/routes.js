@@ -91,13 +91,12 @@ function optionsWithSearch(navigation, title) {
 }
 
 export default function Routes () {
-
-  const isUserAuthenticated = true;
+  const { localUser } = React.useContext(GeneralContext);
 
   return (
     <NavigationContainer>
       {
-        isUserAuthenticated ? (
+        localUser.isLogged ? (
           <Stack.Navigator>
             <Stack.Screen name="Main" component={BottomTabs} options={{ headerShown: false }} />
             <Stack.Screen name="Agents" component={Agents} options={({ navigation }) => optionsWithSearch(navigation, 'Representantes')} />

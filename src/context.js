@@ -25,21 +25,21 @@ export const GeneralContextProvider = ({ children }) => {
   });
 
   async function setAuthUser(user, email) {
-    await AsyncStorage.setItem('@USER', isJson(user) ? JSON.parse(user) : user);
+    await AsyncStorage.setItem('@USER', isJson(user) ? user : JSON.stringify(user));
     await AsyncStorage.setItem('@EMAIL', email);
 
     setLocalUser({
       isLogged: true,
-      currentUser: isJson(user) ? JSON.parse(user) : user,
+      currentUser: isJson(user) ? user : JSON.stringify(user),
       currentEmail: email,
     });
   }
 
   async function updateAuthUser(user) {
-    await AsyncStorage.setItem('@USER', isJson(user) ? JSON.parse(user) : user);
+    await AsyncStorage.setItem('@USER', isJson(user) ? user : JSON.stringify(user));
     setLocalUser({
       ...localUser,
-      currentUser: isJson(user) ? JSON.parse(user) : user,
+      currentUser: isJson(user) ? user : JSON.stringify(user),
     });
   }
 
